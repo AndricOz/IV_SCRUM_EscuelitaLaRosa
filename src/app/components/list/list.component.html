@@ -1,0 +1,66 @@
+<div class="lista-container">
+
+  <div class="encabezado">
+    <h2>Estudiantes registrados</h2>
+
+    @if (!mostrarFormulario) {
+      <button class="btn-primary" (click)="nuevoEstudiante()">
+        + Nuevo estudiante
+      </button>
+    }
+  </div>
+
+  @if (mostrarFormulario) {
+    <app-form
+      [estudianteEditar]="estudianteSeleccionado"
+      (guardado)="onGuardado()"
+      (cancelar)="onCancelar()">
+    </app-form>
+  }
+
+  @if (!mostrarFormulario) {
+
+    @if (estudiantes.length === 0) {
+      <p class="vacio">No hay estudiantes registrados todavía.</p>
+    }
+
+    @if (estudiantes.length > 0) {
+      <table class="tabla-estudiantes">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Carné</th>
+            <th>Correo</th>
+            <th>Edad</th>
+            <th>Carrera</th>
+            <th>Jornada</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (estudiante of estudiantes; track estudiante.id) {
+            <tr>
+              <td>{{ estudiante.nombreCompleto }}</td>
+              <td>{{ estudiante.carne }}</td>
+              <td>{{ estudiante.correo }}</td>
+              <td>{{ estudiante.edad }}</td>
+              <td>{{ estudiante.carrera }}</td>
+              <td>{{ estudiante.jornada }}</td>
+              <td>{{ estudiante.telefono }}</td>
+              <td class="acciones-tabla">
+                <button class="btn-editar" (click)="editarEstudiante(estudiante)">
+                  Editar
+                </button>
+                <button class="btn-eliminar" (click)="eliminarEstudiante(estudiante.id)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  }
+
+</div>

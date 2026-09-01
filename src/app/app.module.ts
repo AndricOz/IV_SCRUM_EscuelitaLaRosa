@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { App } from './app.component';
 import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './components/list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     App,
-    FormComponent
+    FormComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
