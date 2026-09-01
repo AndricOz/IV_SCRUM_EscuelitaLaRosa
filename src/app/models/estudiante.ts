@@ -1,4 +1,5 @@
 export interface Estudiante {
+    id: number;
     nombreCompleto: string;
     carne: string;
     correo: string;

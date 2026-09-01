@@ -82,7 +82,14 @@ $bg-color: #f4f6f8;
     }
   }
 
-  button[type='submit'] {
+  .acciones {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  button[type='submit'],
+  .btn-secondary {
     padding: 0.7rem 1rem;
     font-size: 1rem;
     font-weight: 600;
@@ -100,6 +107,14 @@ $bg-color: #f4f6f8;
     &:disabled {
       background-color: #9fb1c1;
       cursor: not-allowed;
+    }
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+
+    &:hover {
+      background-color: darken(#6c757d, 8%);
     }
   }
 }

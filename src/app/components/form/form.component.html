@@ -1,6 +1,6 @@
 <div class="form-container">
 
-  <h2>Registro de estudiantes</h2>
+  <h2>{{ esEdicion ? 'Editar estudiante' : 'Registro de estudiantes' }}</h2>
 
   <form [formGroup]="formularioEstudiante"
         (ngSubmit)="guardarEstudiante()">
@@ -223,9 +223,17 @@
     </div>
 
 
-    <button type="submit">
-      Guardar estudiante
-    </button>
+    <div class="acciones">
+      <button type="submit" class="btn-primary">
+        {{ esEdicion ? 'Actualizar estudiante' : 'Guardar estudiante' }}
+      </button>
+
+      @if (esEdicion) {
+        <button type="button" class="btn-secondary" (click)="onCancelar()">
+          Cancelar
+        </button>
+      }
+    </div>
 
   </form>
 
