@@ -1,0 +1,232 @@
+<div class="form-container">
+
+  <h2>Registro de estudiantes</h2>
+
+  <form [formGroup]="formularioEstudiante"
+        (ngSubmit)="guardarEstudiante()">
+
+    <div class="campo">
+      <label for="nombreCompleto">Nombre completo</label>
+
+      <input
+        id="nombreCompleto"
+        type="text"
+        formControlName="nombreCompleto"
+        placeholder="Ingrese su nombre completo">
+
+      @if (formularioEstudiante.get('nombreCompleto')?.touched &&
+           formularioEstudiante.get('nombreCompleto')?.invalid) {
+
+        <small>
+          @if (formularioEstudiante.get('nombreCompleto')?.hasError('required')) {
+            El nombre es obligatorio.
+          }
+
+          @if (formularioEstudiante.get('nombreCompleto')?.hasError('minlength')) {
+            El nombre debe tener al menos 5 caracteres.
+          }
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="carne">Número de carné</label>
+
+      <input
+        id="carne"
+        type="text"
+        formControlName="carne"
+        placeholder="Ingrese su carné">
+
+      @if (formularioEstudiante.get('carne')?.touched &&
+           formularioEstudiante.get('carne')?.invalid) {
+
+        <small>
+          @if (formularioEstudiante.get('carne')?.hasError('required')) {
+            El carné es obligatorio.
+          }
+
+          @if (formularioEstudiante.get('carne')?.hasError('minlength') ||
+               formularioEstudiante.get('carne')?.hasError('maxlength')) {
+            El carné debe tener entre 5 y 10 caracteres.
+          }
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="correo">Correo electrónico</label>
+
+      <input
+        id="correo"
+        type="email"
+        formControlName="correo"
+        placeholder="ejemplo@correo.com">
+
+      @if (formularioEstudiante.get('correo')?.touched &&
+           formularioEstudiante.get('correo')?.invalid) {
+
+        <small>
+          @if (formularioEstudiante.get('correo')?.hasError('required')) {
+            El correo es obligatorio.
+          }
+
+          @if (formularioEstudiante.get('correo')?.hasError('email')) {
+            Ingrese un correo válido.
+          }
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="edad">Edad</label>
+
+      <input
+        id="edad"
+        type="number"
+        formControlName="edad"
+        placeholder="Edad">
+
+      @if (formularioEstudiante.get('edad')?.touched &&
+           formularioEstudiante.get('edad')?.invalid) {
+
+        <small>
+          @if (formularioEstudiante.get('edad')?.hasError('required')) {
+            La edad es obligatoria.
+          }
+
+          @if (formularioEstudiante.get('edad')?.hasError('min') ||
+               formularioEstudiante.get('edad')?.hasError('max')) {
+            La edad debe estar entre 14 y 25 años.
+          }
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="carrera">Carrera</label>
+
+      <select id="carrera" formControlName="carrera">
+
+        <option value="">Seleccione una carrera</option>
+
+        @for (carrera of carreras; track carrera) {
+          <option [value]="carrera">
+            {{ carrera }}
+          </option>
+        }
+
+      </select>
+
+      @if (formularioEstudiante.get('carrera')?.touched &&
+           formularioEstudiante.get('carrera')?.hasError('required')) {
+
+        <small>
+          Debe seleccionar una carrera.
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="jornada">Jornada</label>
+
+      <select id="jornada" formControlName="jornada">
+
+        <option value="">Seleccione una jornada</option>
+
+        @for (jornada of jornadas; track jornada) {
+          <option [value]="jornada">
+            {{ jornada }}
+          </option>
+        }
+
+      </select>
+
+      @if (formularioEstudiante.get('jornada')?.touched &&
+           formularioEstudiante.get('jornada')?.hasError('required')) {
+
+        <small>
+          Debe seleccionar una jornada.
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="fechaNacimiento">Fecha de nacimiento</label>
+
+      <input
+        id="fechaNacimiento"
+        type="date"
+        formControlName="fechaNacimiento">
+
+      @if (formularioEstudiante.get('fechaNacimiento')?.touched &&
+           formularioEstudiante.get('fechaNacimiento')?.hasError('required')) {
+
+        <small>
+          La fecha de nacimiento es obligatoria.
+        </small>
+      }
+    </div>
+
+
+    <div class="campo">
+      <label for="telefono">Teléfono</label>
+
+      <input
+        id="telefono"
+        type="text"
+        formControlName="telefono"
+        placeholder="12345678"
+        maxlength="8">
+
+      @if (formularioEstudiante.get('telefono')?.touched &&
+           formularioEstudiante.get('telefono')?.invalid) {
+
+        <small>
+          @if (formularioEstudiante.get('telefono')?.hasError('required')) {
+            El teléfono es obligatorio.
+          }
+
+          @if (formularioEstudiante.get('telefono')?.hasError('pattern')) {
+            El teléfono debe contener exactamente 8 dígitos.
+          }
+        </small>
+      }
+    </div>
+
+
+    <div class="reglamento">
+
+      <input
+        id="aceptaReglamento"
+        type="checkbox"
+        formControlName="aceptaReglamento">
+
+      <label for="aceptaReglamento">
+        Acepto el reglamento
+      </label>
+
+      @if (formularioEstudiante.get('aceptaReglamento')?.touched &&
+           formularioEstudiante.get('aceptaReglamento')?.hasError('required')) {
+
+        <small>
+          Debe aceptar el reglamento.
+        </small>
+      }
+
+    </div>
+
+
+    <button type="submit">
+      Guardar estudiante
+    </button>
+
+  </form>
+
+</div>
